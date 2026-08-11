@@ -4,10 +4,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
-// Status is constrained to two values only, so an enum is a safer choice than free text
 enum StudentStatus {
   active
   inactive

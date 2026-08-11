@@ -1,7 +1,7 @@
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
 import studentRoutes from "./routes/student.routes";
 import { errorHandler, notFoundHandler } from "./middlewares/errorHandler";
 
