@@ -1,4 +1,4 @@
-# EduAyna — Student Management Dashboard
+# EduTrack — Student Management Dashboard
 
 A small Student Management Dashboard built as part of the Junior Fullstack Developer
 technical assignment for FlyNest Global PLC (EduAyna).
@@ -7,7 +7,7 @@ Live Demo:
 - Frontend: [https://your-frontend.vercel.app]
 - Backend: [https://your-backend.vercel.app] / [https://your-backend-host.com]
 
-Repository: [https://github.com/your-username/eduayna]
+Repository: [https://github.com/your-username/edutrack]
 
 ---
 
@@ -72,9 +72,9 @@ The app is split into two parts:
 ## 4. Project Structure
 
 ```
-eduayna/
-├── eduayna-backend/     # Express + Prisma + PostgreSQL API
-└── eduayna-frontend/    # Next.js + Redux Toolkit dashboard
+edutrack/
+├── backend/     # Express + Prisma + PostgreSQL API
+└── frontend/    # Next.js + Redux Toolkit dashboard
 ```
 
 ---
@@ -84,21 +84,21 @@ eduayna/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/eduayna.git
-cd eduayna
+git clone https://github.com/your-username/edutrack.git
+cd edutrack
 ```
 
 ### Backend
 
 ```bash
-cd eduayna-backend
+cd backend
 npm install
 ```
 
 ### Frontend
 
 ```bash
-cd eduayna-frontend
+cd frontend
 npm install
 ```
 
@@ -109,7 +109,7 @@ npm install
 Neither `.env` file is committed to this repository. Copy the example files and fill in
 your own values — **do not commit real credentials or secrets.**
 
-### Backend — `eduayna-backend/.env`
+### Backend — `backend/.env`
 
 ```bash
 cp .env.example .env
@@ -129,7 +129,7 @@ CLIENT_URL=
 JWT_SECRET=
 ```
 
-### Frontend — `eduayna-frontend/.env.local`
+### Frontend — `frontend/.env.local`
 
 ```bash
 cp .env.example .env.local
@@ -144,7 +144,7 @@ Example values for local development:
 
 ```env
 # backend/.env
-DATABASE_URL="postgresql://user:password@ep-xxxx.neon.tech/eduayna?sslmode=require"
+DATABASE_URL="postgresql://user:password@ep-xxxx.neon.tech/edutrack?sslmode=require"
 PORT=5000
 CLIENT_URL="http://localhost:3000"
 JWT_SECRET="any_random_string"
@@ -160,11 +160,11 @@ NEXT_PUBLIC_API_URL="http://localhost:5000/api"
 This project uses **PostgreSQL** with **Prisma** as the ORM.
 
 1. Create a PostgreSQL database (e.g. a free project on [Neon](https://neon.tech)).
-2. Copy the connection string into `DATABASE_URL` in `eduayna-backend/.env`.
-3. From the `eduayna-backend` folder, run the migration to create the `students` table:
+2. Copy the connection string into `DATABASE_URL` in `backend/.env`.
+3. From the `backend` folder, run the migration to create the `students` table:
 
 ```bash
-cd eduayna-backend
+cd backend
 npx prisma migrate dev --name init
 ```
 
@@ -209,7 +209,7 @@ Run the backend and frontend in two separate terminals.
 ### Backend
 
 ```bash
-cd eduayna-backend
+cd backend
 npm run dev
 ```
 
@@ -218,7 +218,7 @@ Runs on `http://localhost:5000` (health check at `/api/health`).
 ### Frontend
 
 ```bash
-cd eduayna-frontend
+cd frontend
 npm run dev
 ```
 
@@ -228,7 +228,7 @@ Runs on `http://localhost:3000`.
 
 ## 9. Available Scripts
 
-### Backend (`eduayna-backend`)
+### Backend (`backend`)
 
 | Script | Description |
 |---|---|
@@ -238,7 +238,7 @@ Runs on `http://localhost:3000`.
 | `npm run prisma:migrate` | Run Prisma migrations |
 | `npm run prisma:studio` | Open Prisma Studio to browse the database |
 
-### Frontend (`eduayna-frontend`)
+### Frontend (`frontend`)
 
 | Script | Description |
 |---|---|
