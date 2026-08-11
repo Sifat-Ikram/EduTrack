@@ -5,9 +5,9 @@ technical assignment for FlyNest Global PLC (EduAyna).
 
 Live Demo:
 - Frontend: [https://your-frontend.vercel.app]
-- Backend: [https://your-backend.vercel.app] / [https://your-backend-host.com]
+- Backend: https://edutrack-backend-nine.vercel.app
 
-Repository: [https://github.com/your-username/edutrack]
+Repository: https://github.com/Sifat-Ikram/EduTrack
 
 ---
 
