@@ -15,7 +15,7 @@ export default function ErrorState({ message, onRetry }: ErrorStateProps) {
             <FiAlertTriangle size={36} />
             <p className="text-sm text-center max-w-sm">{message}</p>
             {onRetry && (
-                <Button variant="secondary" onClick={onRetry}>
+                <Button variant="secondary" onClick={onRetry} className="cursor-pointer">
                     Try Again
                 </Button>
             )}

@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 // Health check
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ success: true, message: "EduAyna API is running" });
+  res.status(200).json({ success: true, message: "EduTrack API is running" });
 });
 
 // Routes

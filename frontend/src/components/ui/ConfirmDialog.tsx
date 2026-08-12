@@ -39,10 +39,10 @@ export default function ConfirmDialog({
                         <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
                         <p className="mt-2 text-sm text-gray-600">{description}</p>
                         <div className="mt-6 flex justify-end gap-3">
-                            <Button variant="secondary" onClick={onCancel} disabled={isLoading}>
+                            <Button variant="secondary" onClick={onCancel} disabled={isLoading} className="cursor-pointer">
                                 Cancel
                             </Button>
-                            <Button variant="danger" onClick={onConfirm} isLoading={isLoading}>
+                            <Button variant="danger" onClick={onConfirm} isLoading={isLoading} className="cursor-pointer">
                                 Delete
                             </Button>
                         </div>

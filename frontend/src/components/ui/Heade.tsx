@@ -19,7 +19,7 @@ const Header = () => {
 
           <div className="leading-tight">
             <h1 className="text-[17px] font-semibold tracking-tight text-slate-900">
-              EduAyna
+              EduTrack
             </h1>
 
             <p className="mt-0.5 text-[11px] font-medium text-slate-500">

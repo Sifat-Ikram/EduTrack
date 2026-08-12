@@ -4,8 +4,8 @@ import Providers from "./providers";
 import Header from "@/components/ui/Heade";
 
 export const metadata: Metadata = {
-  title: "EduAyna | Student Management",
-  description: "Student Management Dashboard for EduAyna",
+  title: "EduTrack | Student Management",
+  description: "Student Management Dashboard for EduTrack",
 };
 
 export default function RootLayout({
