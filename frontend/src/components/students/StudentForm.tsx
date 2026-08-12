@@ -1,110 +1,171 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { FiCheck } from "react-icons/fi";
 import { StudentFormData, StudentStatus } from "@/types/student";
 import Input from "../ui/Input";
 import Select from "../ui/Select";
 import Button from "../ui/Button";
 
 interface StudentFormProps {
-    initialData?: StudentFormData;
-    onSubmit: (data: StudentFormData) => void;
-    isSubmitting: boolean;
-    submitLabel?: string;
+  initialData?: StudentFormData;
+  onSubmit: (data: StudentFormData) => void;
+  isSubmitting: boolean;
+  submitLabel?: string;
 }
 
 // Shared by both Add and Edit pages — the fields and validation rules are identical
 export default function StudentForm({
-    initialData,
-    onSubmit,
-    isSubmitting,
-    submitLabel = "Save Student",
+  initialData,
+  onSubmit,
+  isSubmitting,
+  submitLabel = "Save Student",
 }: StudentFormProps) {
-    const [formData, setFormData] = useState<StudentFormData>(
-        initialData ?? { name: "", email: "", phone: "", class: "", status: "active" }
-    );
-    const [errors, setErrors] = useState<Partial<Record<keyof StudentFormData, string>>>({});
+  const [formData, setFormData] = useState<StudentFormData>(
+    initialData ?? {
+      name: "",
+      email: "",
+      phone: "",
+      class: "",
+      status: "active",
+    },
+  );
 
-    const validate = (): boolean => {
-        const newErrors: Partial<Record<keyof StudentFormData, string>> = {};
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof StudentFormData, string>>
+  >({});
 
-        if (!formData.name.trim()) newErrors.name = "Name is required.";
+  const validate = (): boolean => {
+    const newErrors: Partial<Record<keyof StudentFormData, string>> = {};
 
-        if (!formData.email.trim()) {
-            newErrors.email = "Email is required.";
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = "Please enter a valid email address.";
-        }
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required.";
+    }
 
-        if (!formData.phone.trim()) newErrors.phone = "Phone is required.";
-        if (!formData.class.trim()) newErrors.class = "Class is required.";
-        if (!formData.status) newErrors.status = "Status is required.";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
 
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone is required.";
+    }
 
-    const handleChange = (field: keyof StudentFormData, value: string) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
-        // Clear the error for a field as soon as the user starts fixing it
-        if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
-    };
+    if (!formData.class.trim()) {
+      newErrors.class = "Class is required.";
+    }
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        if (validate()) onSubmit(formData);
-    };
+    if (!formData.status) {
+      newErrors.status = "Status is required.";
+    }
 
-    return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-xl bg-white p-6 shadow-sm">
-            <Input
-                label="Name"
-                value={formData.name}
-                onChange={(e) => handleChange("name", e.target.value)}
-                error={errors.name}
-                placeholder="e.g. Rahim Uddin"
-            />
+    setErrors(newErrors);
 
-            <Input
-                label="Email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                error={errors.email}
-                placeholder="e.g. rahim@example.com"
-            />
+    return Object.keys(newErrors).length === 0;
+  };
 
-            <Input
-                label="Phone"
-                value={formData.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                error={errors.phone}
-                placeholder="e.g. 01700000000"
-            />
+  const handleChange = (field: keyof StudentFormData, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
 
-            <Input
-                label="Class"
-                value={formData.class}
-                onChange={(e) => handleChange("class", e.target.value)}
-                error={errors.class}
-                placeholder="e.g. Class 8"
-            />
+    // Clear the error as soon as the user starts fixing the field
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: undefined,
+      }));
+    }
+  };
 
-            <Select
-                label="Status"
-                value={formData.status}
-                onChange={(e) => handleChange("status", e.target.value as StudentStatus)}
-                error={errors.status}
-            >
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-            </Select>
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
 
-            <div className="mt-2 flex justify-end">
-                <Button type="submit" isLoading={isSubmitting}>
-                    {submitLabel}
-                </Button>
-            </div>
-        </form>
-    );
+    if (validate()) {
+      onSubmit(formData);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_2px_8px_rgba(15,23,42,0.04)] sm:p-7"
+    >
+      {/* Form heading */}
+      <div className="mb-6">
+        <h2 className="text-sm font-semibold text-slate-900">
+          Student Information
+        </h2>
+
+        <p className="mt-1 text-xs text-slate-500">
+          Enter the student&apos;s details below.
+        </p>
+      </div>
+
+      {/* Fields */}
+      <div className="flex flex-col gap-5">
+        <Input
+          label="Name"
+          value={formData.name}
+          onChange={(e) => handleChange("name", e.target.value)}
+          error={errors.name}
+          placeholder="e.g. Rahim Uddin"
+        />
+
+        <Input
+          label="Email"
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          error={errors.email}
+          placeholder="e.g. rahim@example.com"
+        />
+
+        <Input
+          label="Phone"
+          value={formData.phone}
+          onChange={(e) => handleChange("phone", e.target.value)}
+          error={errors.phone}
+          placeholder="e.g. 01700000000"
+        />
+
+        <Input
+          label="Class"
+          value={formData.class}
+          onChange={(e) => handleChange("class", e.target.value)}
+          error={errors.class}
+          placeholder="e.g. Class 8"
+        />
+
+        <Select
+          label="Status"
+          value={formData.status}
+          onChange={(e) =>
+            handleChange("status", e.target.value as StudentStatus)
+          }
+          error={errors.status}
+        >
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </Select>
+      </div>
+
+      {/* Divider */}
+      <div className="my-6 h-px bg-slate-100" />
+
+      {/* Submit */}
+      <div className="flex justify-end">
+        <Button
+          type="submit"
+          isLoading={isSubmitting}
+          className="cursor-pointer"
+        >
+          {!isSubmitting && <FiCheck size={16} />}
+          {submitLabel}
+        </Button>
+      </div>
+    </form>
+  );
 }

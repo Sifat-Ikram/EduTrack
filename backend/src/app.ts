@@ -9,19 +9,19 @@ dotenv.config();
 
 const app = express();
 
-// Middlewares
 app.use(
-    cors({
-        origin: process.env.CLIENT_URL || "http://localhost:3000",
-        credentials: true,
-    })
+  cors({
+    origin:
+      process.env.CLIENT_URL || "https://edutrack-frontend-tau.vercel.app",
+    credentials: true,
+  }),
 );
 app.use(express.json());
 app.use(cookieParser());
 
 // Health check
 app.get("/api/health", (req, res) => {
-    res.status(200).json({ success: true, message: "EduAyna API is running" });
+  res.status(200).json({ success: true, message: "EduAyna API is running" });
 });
 
 // Routes
